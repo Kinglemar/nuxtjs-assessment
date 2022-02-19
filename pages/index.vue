@@ -6,7 +6,7 @@
 
         <p>My name is <b>Dimeji Michael Ogunleye</b></p>
 
-        <p>Please click the link below to see my solutions provided</p>
+        <p>Please click the link below to see my solutions.</p>
       </div>
 
       <nuxt-link to="/Page1" class="add-btn">Solutions</nuxt-link>
@@ -24,7 +24,7 @@ export default {
   font-family: "Roboto", helvetica, arial, sans-serif;
   text-align: left;
   color: #2c3e50;
-  padding: 82px;
+  padding: 80px;
   display: flex;
   align-items: center;
   justify-content: center;

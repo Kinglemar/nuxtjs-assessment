@@ -1,81 +1,88 @@
-<template>
-<div>
-  <div class="navbar">
-    <Navbar :link="prev"/>
-    <Navbar :link="next"/>
-  </div>
+ <template>
+      <div>
+        <div class="navbar">
+          <Navbar :link="prev"/>
+          <Navbar :link="next"/>
+        </div>
 
-  <div id="page1">
-    <div class="header">Debounced search:</div>
-    <div class="content">
-      <div class="flex-row">
-        <label class="label" for="search">Search:</label>
-        <input v-model="searchQuery" class="input" type="text">
-      </div>
+        <div id="page1">
+          <div class="header">Debounced search:</div>
+          <div class="content">
+            <div class="flex-row">
+              <label class="label" for="search">Search:</label>
+              <input v-model="searchQuery" @keyup="controlDataRefresh" @keydown="getApiData" class="input" type="text">
+            </div>
 
-      <p v-if="isSearching">Searching…</p>
+            <p v-if="isSearching">Searching…</p>
 
-      <div v-else class="list">
-        <span v-for="result in results" :key="result" class="list-item">{{ result }}</span>
-      </div>
-    </div>
-  </div>
-  </div>
+            <div v-else class="list">
+              <span v-for="result in results" :key="result" class="list-item">{{ result }}</span>
+            </div>
+          </div>
+        </div>
+        </div>
 </template>
 
-<script>
+    <script>
+    import _ from 'lodash';
+    import Navbar from '../components/Navbar.vue';
 
-const kDataset = ["Java", "JavaScript", "Python", "Vue.js", "React", "Angular"];
+    const kDataset = ["Java", "JavaScript", "Python", "Vue.js", "React", "Angular"];
+    // const kDataset = []
+    const kDebounceTimeoutMs = 1500;
 
-const kDebounceTimeoutMs = 1000;
-import Navbar from '../components/Navbar.vue'
+    export default {
+    name: "IndexPage",
 
-export default {
-  name: 'IndexPage',
-  data(){
-    return{
-      searchQuery: "",
-      isSearching: false,
+    data(){
+        return{
+          searchQuery : "",
+          isSearching : false,
+          searchDatabase: "",
+          prev: {
+            name: 'Previous',
+            path: '/'
+          },
+          next: {
+            name: 'Next',
+            path: '/Page2'
+          }
+        }
+    },
 
+    methods: {
+    controlDataRefresh: _.debounce( function(){
+        this.isSearching = !this.isSearching
+    }, kDebounceTimeoutMs),
 
-      prev: {
-        name: 'Previous',
-        path: '/'
-      },
-      next: {
-        name: 'Next',
-        path: '/Page2'
-      }
+    getApiData : function(){
+      // const res = await fetch('https://busy.io')
+      // const data = await res
+
+      // set response to kDataset
+      // kDataset = data
+
+      console.log('Api Data requested!')
+
+      this.isSearching = !this.isSearching
     }
-  },
+    },
 
-  methods: {
-    getApiSearch: async function(){
-      const res = await fetch('');
-      const data = await res
-      console.log(data)
+    computed: {
+        results() {
+        return this.searchQuery
+            ? kDataset.filter(string =>
+                string.toLowerCase().includes(this.searchQuery.toLowerCase())
+            )
+            : kDataset;
+        },
+    },
+
+    components: {
+        Navbar
+    },
     }
-  },
-
-  computed: {
-    results() {
-      return this.searchQuery
-        ? kDataset.filter(string =>
-            string.toLowerCase().includes(this.searchQuery.toLowerCase())
-          )
-        : kDataset;
-    }
-  },
-
-  components: {
-    Navbar
-  },
-
-  props:{
-
-  }
-}
-</script>
+    </script>
 
 <style scoped>
 #page1 {
@@ -153,7 +160,6 @@ export default {
 
 .list {
   padding: 0;
-  min-height: 250px;
 }
 
 .list-item {

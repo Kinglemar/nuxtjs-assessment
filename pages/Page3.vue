@@ -4,7 +4,7 @@
     <Navbar :link="prev"/>
     <Navbar :link="next"/>
   </div>
-  <div id="app">
+  <div id="page3">
     <h1>TO DO:</h1>
     <ToDo />
     <ToDo />
@@ -41,23 +41,32 @@ export default {
 </script>
 
 <style>
-#app {
+#page3 {
   font-family: "Roboto", helvetica, arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-  padding: 25px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-
   background: linear-gradient(
     135deg,
     rgba(65, 184, 131, 0.9),
     rgba(52, 73, 94, 0.9)
   );
-
   font-size: 1.5em;
+}
+h1{
+  margin: 5px
+}
+#page3.p{
+  font-size: 1rem;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>

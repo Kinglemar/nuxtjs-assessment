@@ -5,6 +5,9 @@
     <button @click="completed = !completed" class="toggle">
       Toggle completed
     </button>
+
+    <p class="line" v-if="!completed">To be done</p>
+    <p class="line" v-else>Completed</p>
   </div>
 </template>
 
@@ -13,17 +16,18 @@
 export default {
   data(){
     return {
-      message: ""
+      message: "",
+      completed: ""
     }
   },
 
-//   computed:{
+  computed:{
 
-//     //access store variable and set completed data to false
-//     complete() {
-//       return this.completed = this.$store.state.completed
-//     }
-// },
+    //access store variable and set completed data to false
+    complete() {
+      return this.completed = this.$store.state.completed
+    }
+},
 
   methods:{
 
@@ -61,7 +65,7 @@ export default {
 
 .todo {
   position: relative;
-  margin-top: 40px;
+  margin-top: 10px;
   width: 500px;
 }
 
@@ -84,5 +88,9 @@ input[type="text"]:hover,
 input[type="password"]:hover {
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.3);
   transition: 0.3s box-shadow;
+}
+
+p.line{
+  margin-bottom: 0;
 }
 </style>

@@ -5,7 +5,7 @@
     <Navbar :link="next"/>
   </div>
 
-  <div id="app" :class="{ green: completed }">
+  <div id="page2" :class="{ green: completed }">
     <h1>Color switcher:</h1>
 
     <div>
@@ -44,12 +44,12 @@ export default {
 };
 </script>
 
-<style>
-#app {
+<style scoped>
+#page2 {
   font-family: "Roboto", helvetica, arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-  padding: 60px;
+  padding: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
