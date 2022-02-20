@@ -10,7 +10,7 @@
           <div class="content">
             <div class="flex-row">
               <label class="label" for="search">Search:</label>
-              <input v-model="searchQuery" @keyup="controlDataRefresh" @keydown="getApiData" class="input" type="text">
+              <input v-model="searchQuery" @keydown="controlDataRefresh" @keyup="getApiData" class="input" type="text">
             </div>
 
             <p v-if="isSearching">Searching…</p>
@@ -29,7 +29,7 @@
 
     const kDataset = ["Java", "JavaScript", "Python", "Vue.js", "React", "Angular"];
     // const kDataset = []
-    const kDebounceTimeoutMs = 1500;
+    const kDebounceTimeoutMs = 1000;
 
     export default {
     name: "IndexPage",
