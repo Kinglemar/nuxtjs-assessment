@@ -50,21 +50,22 @@
         }
     },
 
-    methods: {
-    controlDataRefresh: _.debounce( function(){
-        this.isSearching = !this.isSearching
-    }, kDebounceTimeoutMs),
+//temporarily stop API refresh request
 
-    getApiData : function(){
+    methods: {
+    getApiData: _.debounce( function(){
+
+      this.isSearching = !this.isSearching
+      console.log('Api Data requested!')
       // const res = await fetch('https://busy.io')
       // const data = await res
 
       // set response to kDataset
       // kDataset = data
+    }, kDebounceTimeoutMs),
 
-      console.log('Api Data requested!')
-
-      this.isSearching = !this.isSearching
+    controlDataRefresh : function(){
+        this.isSearching = !this.isSearching
     }
     },
 

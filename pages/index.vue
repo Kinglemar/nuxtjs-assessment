@@ -30,13 +30,11 @@ export default {
   justify-content: center;
   flex-direction: column;
   position: relative;
-
   background: linear-gradient(
     135deg,
     rgba(65, 184, 131, 0.9),
     rgba(52, 73, 94, 0.9)
   );
-
   font-size: 1.5em;
 }
 

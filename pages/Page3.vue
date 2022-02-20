@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import ToDo from "../components/ToDo";
-import Navbar from '../components/Navbar.vue'
+import ToDo from "../components/ToDo.vue";
+import Navbar from "../components/Navbar.vue";
 
 export default {
   name: "App",
