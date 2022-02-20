@@ -29,7 +29,7 @@
 
     const kDataset = ["Java", "JavaScript", "Python", "Vue.js", "React", "Angular"];
     // const kDataset = []
-    const kDebounceTimeoutMs = 1500;
+    const kDebounceTimeoutMs = 1000;
 
     export default {
     name: "IndexPage",
