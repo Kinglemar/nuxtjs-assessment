@@ -62,9 +62,9 @@
       // kDataset = data
     }, kDebounceTimeoutMs),
 
-      controlDataRefresh : function(){
+      controlDataRefresh : _.debounce( function(){
         this.isSearching = !this.isSearching
-    },
+    }, kDebounceTimeoutMs)
     },
 
     computed: {
