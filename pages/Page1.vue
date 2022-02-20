@@ -10,7 +10,7 @@
           <div class="content">
             <div class="flex-row">
               <label class="label" for="search">Search:</label>
-              <input v-model="searchQuery" @keydown="getApiData" @keyup="controlDataRefresh" class="input" type="text">
+              <input v-model="searchQuery" @keydown="controlDataRefresh" @keyup="getApiData" class="input" type="text">
             </div>
 
             <p v-if="isSearching">Searching…</p>
@@ -49,22 +49,26 @@
           }
         }
     },
-
-//temporarily stop API refresh request
+//temporarily stop API request
 
     methods: {
     getApiData: _.debounce( function(){
       this.isSearching = !this.isSearching
       console.log('Api Data requested!')
+
       // const res = await fetch('https://busy.io')
-      // const data = await res
+      // const data = await res.json
+
       // set response to kDataset
       // kDataset = data
     }, kDebounceTimeoutMs),
 
       controlDataRefresh : _.debounce( function(){
-        this.isSearching = !this.isSearching
-    }, kDebounceTimeoutMs)
+        if(this.results){
+          this.isSearching = !this.isSearching
+          console.log("warned")
+        }
+    }, 10)
     },
 
     computed: {
