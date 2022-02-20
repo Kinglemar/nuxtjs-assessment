@@ -29,7 +29,7 @@
 
     const kDataset = ["Java", "JavaScript", "Python", "Vue.js", "React", "Angular"];
     // const kDataset = []
-    const kDebounceTimeoutMs = 1000;
+    const kDebounceTimeoutMs = 1500;
 
     export default {
     name: "IndexPage",
@@ -53,7 +53,6 @@
 
     methods: {
     getApiData: _.debounce( function(){
-      this.isSearching = !this.isSearching
       console.log('Api Data requested!')
 
       // const res = await fetch('https://busy.io')
@@ -61,14 +60,16 @@
 
       // set response to kDataset
       // kDataset = data
+      console.log("data recieved")
+      if(kDataset){
+        this.controlDataRefresh()
+      }
     }, kDebounceTimeoutMs),
 
       controlDataRefresh : _.debounce( function(){
-        if(this.results){
           this.isSearching = !this.isSearching
           console.log("warned")
-        }
-    }, 10)
+    },100),
     },
 
     computed: {
